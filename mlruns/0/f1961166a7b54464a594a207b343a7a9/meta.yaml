@@ -1,0 +1,15 @@
+artifact_uri: file:///home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/f1961166a7b54464a594a207b343a7a9/artifacts
+end_time: 1689805103046
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f1961166a7b54464a594a207b343a7a9
+run_name: fun-boar-227
+run_uuid: f1961166a7b54464a594a207b343a7a9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689804984046
+status: 3
+tags: []
+user_id: linux

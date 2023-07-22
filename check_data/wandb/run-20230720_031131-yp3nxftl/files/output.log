@@ -1,0 +1,28 @@
+[1m======================================================== test session starts ========================================================
+platform linux -- Python 3.9.15, pytest-6.2.2, py-1.11.0, pluggy-0.13.1 -- /home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/bin/python
+cachedir: .pytest_cache
+rootdir: /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/check_data
+[1mcollected 4 items                                                                                                                   
+test_data.py::test_column_presence_and_type [32mPASSED
+test_data.py::test_class_names [32mPASSED
+test_data.py::test_column_ranges [32mPASSED
+test_data.py::test_kolmogorov_smirnov [32mPASSED
+[33m========================================================= warnings summary ==========================================================
+test_data.py::test_column_presence_and_type
+test_data.py::test_column_presence_and_type
+  /home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/pandas/io/parsers.py:2061: DeprecationWarning: np.find_common_type is deprecated.  Please use `np.result_type` or `np.promote_types`.
+  See https://numpy.org/devdocs/release/1.25.0-notes.html and the docs for more information.  (Deprecated NumPy 1.25)
+    data = self._reader.read(nrows)
+test_data.py::test_column_presence_and_type
+  /home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/pluggy/callers.py:187: DtypeWarning: Columns (16) have mixed types.Specify dtype option on import or set low_memory=False.
+    res = hook_impl.function(*args)
+test_data.py::test_class_names
+  /home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/pandas/core/algorithms.py:485: DeprecationWarning: np.find_common_type is deprecated.  Please use `np.result_type` or `np.promote_types`.
+  See https://numpy.org/devdocs/release/1.25.0-notes.html and the docs for more information.  (Deprecated NumPy 1.25)
+    common = np.find_common_type([values.dtype, comps.dtype], [])
+test_data.py: 10 warnings
+  /home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/scipy/stats/_distn_infrastructure.py:2003: DeprecationWarning: np.find_common_type is deprecated.  Please use `np.result_type` or `np.promote_types`.
+  See https://numpy.org/devdocs/release/1.25.0-notes.html and the docs for more information.  (Deprecated NumPy 1.25)
+    dtyp = np.find_common_type([x.dtype, np.float64], [])
+-- Docs: https://docs.pytest.org/en/stable/warnings.html
+[33m================================================== [32m4 passed[39m, [33m[1m14 warnings[22m in 5.57s ===================================================

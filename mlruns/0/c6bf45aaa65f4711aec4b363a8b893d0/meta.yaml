@@ -1,0 +1,15 @@
+artifact_uri: file:///home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/c6bf45aaa65f4711aec4b363a8b893d0/artifacts
+end_time: 1689779456315
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c6bf45aaa65f4711aec4b363a8b893d0
+run_name: nosy-sponge-262
+run_uuid: c6bf45aaa65f4711aec4b363a8b893d0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689779414286
+status: 3
+tags: []
+user_id: linux

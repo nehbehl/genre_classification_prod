@@ -1,0 +1,15 @@
+artifact_uri: file:///home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/af29a314c1bd4e76bcf0dc911842fd36/artifacts
+end_time: 1689778411093
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: af29a314c1bd4e76bcf0dc911842fd36
+run_name: puzzled-squid-956
+run_uuid: af29a314c1bd4e76bcf0dc911842fd36
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689778340239
+status: 3
+tags: []
+user_id: linux

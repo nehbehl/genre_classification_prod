@@ -1,0 +1,26 @@
+2023-07-20 03:11:51,302 INFO    MainThread:102859 [wandb_setup.py:_flush():68] Configure stats pid to 102859
+2023-07-20 03:11:51,303 INFO    MainThread:102859 [wandb_setup.py:_flush():68] Loading settings from /home/linux/.config/wandb/settings
+2023-07-20 03:11:51,303 INFO    MainThread:102859 [wandb_setup.py:_flush():68] Loading settings from /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/segregate/wandb/settings
+2023-07-20 03:11:51,303 INFO    MainThread:102859 [wandb_setup.py:_flush():68] Loading settings from environment variables: {'run_group': 'dev', 'project': 'exercise_14', '_require_service': 'True'}
+2023-07-20 03:11:51,303 INFO    MainThread:102859 [wandb_setup.py:_flush():68] Inferring run settings from compute environment: {'program_relpath': 'run.py', 'program': '/home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/segregate/run.py'}
+2023-07-20 03:11:51,303 INFO    MainThread:102859 [wandb_init.py:_log_setup():478] Logging user logs to /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/segregate/wandb/run-20230720_031151-fgvs2ixt/logs/debug.log
+2023-07-20 03:11:51,303 INFO    MainThread:102859 [wandb_init.py:_log_setup():479] Logging internal logs to /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/segregate/wandb/run-20230720_031151-fgvs2ixt/logs/debug-internal.log
+2023-07-20 03:11:51,303 INFO    MainThread:102859 [wandb_init.py:init():518] calling init triggers
+2023-07-20 03:11:51,303 INFO    MainThread:102859 [wandb_init.py:init():521] wandb.init called with sweep_config: {}
+config: {}
+2023-07-20 03:11:51,303 INFO    MainThread:102859 [wandb_init.py:init():571] starting backend
+2023-07-20 03:11:51,303 INFO    MainThread:102859 [wandb_init.py:init():575] setting up manager
+2023-07-20 03:11:51,305 INFO    MainThread:102859 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-07-20 03:11:51,308 INFO    MainThread:102859 [wandb_init.py:init():582] backend started and connected
+2023-07-20 03:11:51,310 INFO    MainThread:102859 [wandb_init.py:init():670] updated telemetry
+2023-07-20 03:11:51,311 INFO    MainThread:102859 [wandb_init.py:init():710] communicating run to backend with 60.0 second timeout
+2023-07-20 03:11:52,306 INFO    MainThread:102859 [wandb_run.py:_on_init():2121] communicating current version
+2023-07-20 03:11:52,359 INFO    MainThread:102859 [wandb_run.py:_on_init():2125] got version response upgrade_message: "wandb version 0.15.5 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2023-07-20 03:11:52,359 INFO    MainThread:102859 [wandb_init.py:init():758] starting run threads in backend
+2023-07-20 03:11:53,282 INFO    MainThread:102859 [wandb_run.py:_console_start():2101] atexit reg
+2023-07-20 03:11:53,282 INFO    MainThread:102859 [wandb_run.py:_redirect():1959] redirect: SettingsConsole.WRAP_RAW
+2023-07-20 03:11:53,283 INFO    MainThread:102859 [wandb_run.py:_redirect():2024] Wrapping output streams.
+2023-07-20 03:11:53,283 INFO    MainThread:102859 [wandb_run.py:_redirect():2046] Redirects installed.
+2023-07-20 03:11:53,283 INFO    MainThread:102859 [wandb_init.py:init():798] run started, returning control to user process
+2023-07-20 03:12:10,497 WARNING MsgRouterThr:102859 [router.py:message_loop():77] message_loop has been closed

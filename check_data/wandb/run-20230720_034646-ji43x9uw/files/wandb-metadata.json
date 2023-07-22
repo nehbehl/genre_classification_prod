@@ -1,0 +1,80 @@
+{
+    "os": "Linux-5.15.90.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.9.15",
+    "heartbeatAt": "2023-07-19T22:16:47.930648",
+    "startedAt": "2023-07-19T22:16:46.693542",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "-s",
+        "-vv",
+        ".",
+        "--reference_artifact",
+        "exercise_14/preprocessed_data.csv:latest",
+        "--sample_artifact",
+        "preprocessed_data.csv:latest",
+        "--ks_alpha",
+        "0.05"
+    ],
+    "state": "running",
+    "program": "/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/bin/pytest",
+    "host": "LAPTOP-BENBK7JO",
+    "username": "linux",
+    "executable": "/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/bin/python",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 2419.198,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 1006.853931427002,
+        "used": 18.527435302734375
+    },
+    "memory": {
+        "total": 7.64447021484375
+    }
+}

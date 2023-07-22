@@ -1,0 +1,15 @@
+artifact_uri: file:///home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/397a08a9fc6842a1bdfb1ed4b2745528/artifacts
+end_time: 1689779535494
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 397a08a9fc6842a1bdfb1ed4b2745528
+run_name: valuable-crow-590
+run_uuid: 397a08a9fc6842a1bdfb1ed4b2745528
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689779412513
+status: 3
+tags: []
+user_id: linux

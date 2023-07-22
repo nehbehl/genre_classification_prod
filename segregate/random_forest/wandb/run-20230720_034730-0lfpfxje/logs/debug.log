@@ -1,0 +1,27 @@
+2023-07-20 03:47:30,550 INFO    MainThread:110560 [wandb_setup.py:_flush():68] Configure stats pid to 110560
+2023-07-20 03:47:30,550 INFO    MainThread:110560 [wandb_setup.py:_flush():68] Loading settings from /home/linux/.config/wandb/settings
+2023-07-20 03:47:30,550 INFO    MainThread:110560 [wandb_setup.py:_flush():68] Loading settings from /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/random_forest/wandb/settings
+2023-07-20 03:47:30,550 INFO    MainThread:110560 [wandb_setup.py:_flush():68] Loading settings from environment variables: {'run_group': 'dev', 'project': 'exercise_14', '_require_service': 'True'}
+2023-07-20 03:47:30,550 INFO    MainThread:110560 [wandb_setup.py:_flush():68] Inferring run settings from compute environment: {'program_relpath': 'run.py', 'program': 'run.py'}
+2023-07-20 03:47:30,551 INFO    MainThread:110560 [wandb_init.py:_log_setup():478] Logging user logs to /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/random_forest/wandb/run-20230720_034730-0lfpfxje/logs/debug.log
+2023-07-20 03:47:30,551 INFO    MainThread:110560 [wandb_init.py:_log_setup():479] Logging internal logs to /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/random_forest/wandb/run-20230720_034730-0lfpfxje/logs/debug-internal.log
+2023-07-20 03:47:30,551 INFO    MainThread:110560 [wandb_init.py:init():518] calling init triggers
+2023-07-20 03:47:30,551 INFO    MainThread:110560 [wandb_init.py:init():521] wandb.init called with sweep_config: {}
+config: {}
+2023-07-20 03:47:30,551 INFO    MainThread:110560 [wandb_init.py:init():571] starting backend
+2023-07-20 03:47:30,551 INFO    MainThread:110560 [wandb_init.py:init():575] setting up manager
+2023-07-20 03:47:30,557 INFO    MainThread:110560 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-07-20 03:47:30,560 INFO    MainThread:110560 [wandb_init.py:init():582] backend started and connected
+2023-07-20 03:47:30,562 INFO    MainThread:110560 [wandb_init.py:init():670] updated telemetry
+2023-07-20 03:47:30,563 INFO    MainThread:110560 [wandb_init.py:init():710] communicating run to backend with 60.0 second timeout
+2023-07-20 03:47:31,546 INFO    MainThread:110560 [wandb_run.py:_on_init():2121] communicating current version
+2023-07-20 03:47:31,610 INFO    MainThread:110560 [wandb_run.py:_on_init():2125] got version response upgrade_message: "wandb version 0.15.5 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2023-07-20 03:47:31,610 INFO    MainThread:110560 [wandb_init.py:init():758] starting run threads in backend
+2023-07-20 03:47:33,108 INFO    MainThread:110560 [wandb_run.py:_console_start():2101] atexit reg
+2023-07-20 03:47:33,109 INFO    MainThread:110560 [wandb_run.py:_redirect():1959] redirect: SettingsConsole.WRAP_RAW
+2023-07-20 03:47:33,109 INFO    MainThread:110560 [wandb_run.py:_redirect():2024] Wrapping output streams.
+2023-07-20 03:47:33,109 INFO    MainThread:110560 [wandb_run.py:_redirect():2046] Redirects installed.
+2023-07-20 03:47:33,110 INFO    MainThread:110560 [wandb_init.py:init():798] run started, returning control to user process
+2023-07-20 03:47:35,529 INFO    MainThread:110560 [wandb_run.py:_config_callback():1249] config_cb None None {'random_forest': {'n_estimators': 100, 'criterion': 'gini', 'max_depth': 13, 'min_samples_split': 2, 'min_samples_leaf': 1, 'min_weight_fraction_leaf': 0.0, 'max_features': 'auto', 'max_leaf_nodes': None, 'min_impurity_decrease': 0.0, 'min_impurity_split': None, 'bootstrap': True, 'oob_score': False, 'n_jobs': None, 'random_state': 42, 'verbose': 0, 'warm_start': False, 'class_weight': 'balanced', 'ccp_alpha': 0.0, 'max_samples': None}, 'tfidf': {'max_features': 10}, 'features': {'numerical': ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms'], 'categorical': ['time_signature', 'key'], 'nlp': ['text_feature']}, 'export_artifact': 'model_export'}
+2023-07-20 03:48:00,499 WARNING MsgRouterThr:110560 [router.py:message_loop():77] message_loop has been closed

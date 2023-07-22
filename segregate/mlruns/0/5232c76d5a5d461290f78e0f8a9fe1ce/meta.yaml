@@ -1,0 +1,15 @@
+artifact_uri: file:///home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/5232c76d5a5d461290f78e0f8a9fe1ce/artifacts
+end_time: 1689802825079
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5232c76d5a5d461290f78e0f8a9fe1ce
+run_name: unleashed-eel-586
+run_uuid: 5232c76d5a5d461290f78e0f8a9fe1ce
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689802801151
+status: 3
+tags: []
+user_id: linux

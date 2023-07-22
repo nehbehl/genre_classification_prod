@@ -1,0 +1,15 @@
+artifact_uri: file:///home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/a96d1e4d0c6540659d146c0d2908fcdb/artifacts
+end_time: 1689779213996
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a96d1e4d0c6540659d146c0d2908fcdb
+run_name: masked-boar-940
+run_uuid: a96d1e4d0c6540659d146c0d2908fcdb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689779197481
+status: 3
+tags: []
+user_id: linux

@@ -1,0 +1,84 @@
+{
+    "os": "Linux-5.15.90.1-microsoft-standard-WSL2-x86_64-with-glibc2.10",
+    "python": "3.8.17",
+    "heartbeatAt": "2023-07-19T22:17:31.625975",
+    "startedAt": "2023-07-19T22:17:30.543040",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--train_data",
+        "data_train.csv:latest",
+        "--model_config",
+        "/home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/outputs/2023-07-20/03-46-25/random_forest_config.yml",
+        "--export_artifact",
+        "model_export",
+        "--random_seed",
+        "42",
+        "--val_size",
+        "0.3",
+        "--stratify",
+        "genre"
+    ],
+    "state": "running",
+    "program": "run.py",
+    "codePath": "run.py",
+    "host": "LAPTOP-BENBK7JO",
+    "username": "linux",
+    "executable": "/home/linux/miniconda3/envs/mlflow-bbc10297fcc5dfea6555ae564c35e686c83a2e87/bin/python",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 2419.198,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 1006.853931427002,
+        "used": 18.527755737304688
+    },
+    "memory": {
+        "total": 7.64447021484375
+    }
+}

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/419dea3b151a4e2a98ce79c2a5bab6c8/artifacts
+end_time: 1689802969890
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 419dea3b151a4e2a98ce79c2a5bab6c8
+run_name: sedate-ram-375
+run_uuid: 419dea3b151a4e2a98ce79c2a5bab6c8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689802861186
+status: 3
+tags: []
+user_id: linux

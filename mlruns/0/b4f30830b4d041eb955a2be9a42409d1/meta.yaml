@@ -1,0 +1,15 @@
+artifact_uri: file:///home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/b4f30830b4d041eb955a2be9a42409d1/artifacts
+end_time: 1689770949906
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b4f30830b4d041eb955a2be9a42409d1
+run_name: fearless-lynx-821
+run_uuid: b4f30830b4d041eb955a2be9a42409d1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689770947862
+status: 4
+tags: []
+user_id: linux

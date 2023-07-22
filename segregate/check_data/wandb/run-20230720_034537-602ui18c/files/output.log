@@ -1,0 +1,684 @@
+[1m======================================================== test session starts ========================================================
+platform linux -- Python 3.9.15, pytest-6.2.2, py-1.11.0, pluggy-0.13.1 -- /home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/bin/python
+cachedir: .pytest_cache
+rootdir: /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/check_data
+[1mcollected 4 items                                                                                                                   
+test_data.py::test_column_presence_and_type [31mERROR
+test_data.py::test_class_names [31mERROR
+test_data.py::test_column_ranges [31mERROR
+test_data.py::test_kolmogorov_smirnov [31mERROR
+============================================================== ERRORS ===============================================================
+[31m[1m__________________________________________ ERROR at setup of test_column_presence_and_type __________________________________________
+args = (<wandb.apis.public.Api object at 0x7f305899b040>,)
+kwargs = {'name': 'genre_classification_prod/preprocessed_data.csv:latest', 'type': None}
+message = 'Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"'
+payload = 'Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"'
+    [37m@wraps[39m(func)
+    [94mdef[39m [92mwrapper[39m(*args, **kwargs):
+        message = [33m"Whoa, you found a bug."
+        [94mtry[39m:
+>           [94mreturn[39m func(*args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:26:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <wandb.apis.public.Api object at 0x7f305899b040>, name = 'genre_classification_prod/preprocessed_data.csv:latest', type = None
+    [37m@normalize_exceptions
+    [94mdef[39m [92martifact[39m([96mself[39m, name, [96mtype[39m=[94mNone[39m):
+    [90m    [33m"""
+    [33m    Returns a single artifact by parsing path in the form `entity/project/run_id`.
+    [33m    Arguments:
+    [33m        name: (str) An artifact name. May be prefixed with entity/project. Valid names
+    [33m            can be in the following forms:
+    [33m                name:version
+    [33m                name:alias
+    [33m                digest
+    [33m        type: (str, optional) The type of artifact to fetch.
+    [33m    Returns:
+    [33m        A `Artifact` object.
+    [33m    """
+        [94mif[39m name [95mis[39m [94mNone[39m:
+            [94mraise[39m [96mValueError[39m([33m"You must specify name= to fetch an artifact."[39m)
+        entity, project, artifact_name = [96mself[39m._parse_artifact_path(name)
+>       artifact = Artifact([96mself[39m.client, entity, project, artifact_name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:949:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+client = <wandb.apis.public.RetryingClient object at 0x7f305899b8b0>, entity = 'udacity-test', project = 'genre_classification_prod'
+name = 'preprocessed_data.csv:latest', attrs = None
+    [94mdef[39m [92m__init__[39m([96mself[39m, client, entity, project, name, attrs=[94mNone[39m):
+        [96mself[39m.client = client
+        [96mself[39m._entity = entity
+        [96mself[39m._project = project
+        [96mself[39m._artifact_name = name
+        [96mself[39m._artifact_collection_name = name.split([33m":"[39m)[[94m0[39m]
+        [96mself[39m._attrs = attrs
+        [94mif[39m [96mself[39m._attrs [95mis[39m [94mNone[39m:
+>           [96mself[39m._load()
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:4343:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+    [94mdef[39m [92m_load[39m([96mself[39m):
+        query = gql(
+    [90m        [33m"""
+    [33m    query Artifact(
+    [33m        $entityName: String,
+    [33m        $projectName: String,
+    [33m        $name: String!
+    [33m    ) {
+    [33m        project(name: $projectName, entityName: $entityName) {
+    [33m            artifact(name: $name) {
+    [33m                ...ArtifactFragment
+    [33m            }
+    [33m        }
+    [33m    }
+    [33m    %s
+    [33m    """
+            % ARTIFACT_FRAGMENT
+        )
+        response = [94mNone
+        [94mtry[39m:
+            response = [96mself[39m.client.execute(
+                query,
+                variable_values={
+                    [33m"entityName"[39m: [96mself[39m.entity,
+                    [33m"projectName"[39m: [96mself[39m.project,
+                    [33m"name"[39m: [96mself[39m._artifact_name,
+                },
+            )
+        [94mexcept[39m [96mException[39m:
+            [90m# we check for this after doing the call, since the backend supports raw digest lookups
+            [90m# which don't include ":" and are 32 characters long
+            [94mif[39m [33m":"[39m [95mnot[39m [95min[39m [96mself[39m._artifact_name [95mand[39m [96mlen[39m([96mself[39m._artifact_name) != [94m32[39m:
+                [94mraise[39m [96mValueError[39m(
+                    [33m'Attempted to fetch artifact without alias (e.g. "<artifact_name>:v3" or "<artifact_name>:latest")'
+                )
+        [94mif[39m (
+            response [95mis[39m [94mNone
+            [95mor[39m response.get([33m"project"[39m) [95mis[39m [94mNone
+            [95mor[39m response[[33m"project"[39m].get([33m"artifact"[39m) [95mis[39m [94mNone
+        ):
+>           [94mraise[39m [96mValueError[39m(
+                [33m'Project %s/%s does not contain artifact: "%s"'
+                % ([96mself[39m.entity, [96mself[39m.project, [96mself[39m._artifact_name)
+            )
+[31m[1mE           ValueError: Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:5072: ValueError
+[33mDuring handling of the above exception, another exception occurred:
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+    [37m@pytest[39m.fixture(scope=[33m"session"[39m)
+    [94mdef[39m [92mdata[39m(request):
+        reference_artifact = request.config.option.reference_artifact
+        [94mif[39m reference_artifact [95mis[39m [94mNone[39m:
+            pytest.fail([33m"--reference_artifact missing on command line"[39m)
+        sample_artifact = request.config.option.sample_artifact
+        [94mif[39m sample_artifact [95mis[39m [94mNone[39m:
+            pytest.fail([33m"--sample_artifact missing on command line"[39m)
+>       local_path = run.use_artifact(reference_artifact).file()
+[31m[1mconftest.py[39m[22m:28:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/sdk/wandb_run.py[39m[22m:333: in wrapper
+    [94mreturn[39m func([96mself[39m, *args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/sdk/wandb_run.py[39m[22m:2617: in use_artifact
+    artifact = public_api.artifact([96mtype[39m=[96mtype[39m, name=name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:64: in wrapper
+    [94mraise[39m CommError(message, err).with_traceback(sys.exc_info()[[94m2[39m])
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:26: in wrapper
+    [94mreturn[39m func(*args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:949: in artifact
+    artifact = Artifact([96mself[39m.client, entity, project, artifact_name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:4343: in __init__
+    [96mself[39m._load()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+    [94mdef[39m [92m_load[39m([96mself[39m):
+        query = gql(
+    [90m        [33m"""
+    [33m    query Artifact(
+    [33m        $entityName: String,
+    [33m        $projectName: String,
+    [33m        $name: String!
+    [33m    ) {
+    [33m        project(name: $projectName, entityName: $entityName) {
+    [33m            artifact(name: $name) {
+    [33m                ...ArtifactFragment
+    [33m            }
+    [33m        }
+    [33m    }
+    [33m    %s
+    [33m    """
+            % ARTIFACT_FRAGMENT
+        )
+        response = [94mNone
+        [94mtry[39m:
+            response = [96mself[39m.client.execute(
+                query,
+                variable_values={
+                    [33m"entityName"[39m: [96mself[39m.entity,
+                    [33m"projectName"[39m: [96mself[39m.project,
+                    [33m"name"[39m: [96mself[39m._artifact_name,
+                },
+            )
+        [94mexcept[39m [96mException[39m:
+            [90m# we check for this after doing the call, since the backend supports raw digest lookups
+            [90m# which don't include ":" and are 32 characters long
+            [94mif[39m [33m":"[39m [95mnot[39m [95min[39m [96mself[39m._artifact_name [95mand[39m [96mlen[39m([96mself[39m._artifact_name) != [94m32[39m:
+                [94mraise[39m [96mValueError[39m(
+                    [33m'Attempted to fetch artifact without alias (e.g. "<artifact_name>:v3" or "<artifact_name>:latest")'
+                )
+        [94mif[39m (
+            response [95mis[39m [94mNone
+            [95mor[39m response.get([33m"project"[39m) [95mis[39m [94mNone
+            [95mor[39m response[[33m"project"[39m].get([33m"artifact"[39m) [95mis[39m [94mNone
+        ):
+>           [94mraise[39m [96mValueError[39m(
+                [33m'Project %s/%s does not contain artifact: "%s"'
+                % ([96mself[39m.entity, [96mself[39m.project, [96mself[39m._artifact_name)
+            )
+[31m[1mE           wandb.errors.CommError: Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:5072: CommError
+[31m[1m________________________________________________ ERROR at setup of test_class_names _________________________________________________
+args = (<wandb.apis.public.Api object at 0x7f305899b040>,)
+kwargs = {'name': 'genre_classification_prod/preprocessed_data.csv:latest', 'type': None}
+message = 'Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"'
+payload = 'Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"'
+    [37m@wraps[39m(func)
+    [94mdef[39m [92mwrapper[39m(*args, **kwargs):
+        message = [33m"Whoa, you found a bug."
+        [94mtry[39m:
+>           [94mreturn[39m func(*args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:26:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <wandb.apis.public.Api object at 0x7f305899b040>, name = 'genre_classification_prod/preprocessed_data.csv:latest', type = None
+    [37m@normalize_exceptions
+    [94mdef[39m [92martifact[39m([96mself[39m, name, [96mtype[39m=[94mNone[39m):
+    [90m    [33m"""
+    [33m    Returns a single artifact by parsing path in the form `entity/project/run_id`.
+    [33m    Arguments:
+    [33m        name: (str) An artifact name. May be prefixed with entity/project. Valid names
+    [33m            can be in the following forms:
+    [33m                name:version
+    [33m                name:alias
+    [33m                digest
+    [33m        type: (str, optional) The type of artifact to fetch.
+    [33m    Returns:
+    [33m        A `Artifact` object.
+    [33m    """
+        [94mif[39m name [95mis[39m [94mNone[39m:
+            [94mraise[39m [96mValueError[39m([33m"You must specify name= to fetch an artifact."[39m)
+        entity, project, artifact_name = [96mself[39m._parse_artifact_path(name)
+>       artifact = Artifact([96mself[39m.client, entity, project, artifact_name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:949:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+client = <wandb.apis.public.RetryingClient object at 0x7f305899b8b0>, entity = 'udacity-test', project = 'genre_classification_prod'
+name = 'preprocessed_data.csv:latest', attrs = None
+    [94mdef[39m [92m__init__[39m([96mself[39m, client, entity, project, name, attrs=[94mNone[39m):
+        [96mself[39m.client = client
+        [96mself[39m._entity = entity
+        [96mself[39m._project = project
+        [96mself[39m._artifact_name = name
+        [96mself[39m._artifact_collection_name = name.split([33m":"[39m)[[94m0[39m]
+        [96mself[39m._attrs = attrs
+        [94mif[39m [96mself[39m._attrs [95mis[39m [94mNone[39m:
+>           [96mself[39m._load()
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:4343:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+    [94mdef[39m [92m_load[39m([96mself[39m):
+        query = gql(
+    [90m        [33m"""
+    [33m    query Artifact(
+    [33m        $entityName: String,
+    [33m        $projectName: String,
+    [33m        $name: String!
+    [33m    ) {
+    [33m        project(name: $projectName, entityName: $entityName) {
+    [33m            artifact(name: $name) {
+    [33m                ...ArtifactFragment
+    [33m            }
+    [33m        }
+    [33m    }
+    [33m    %s
+    [33m    """
+            % ARTIFACT_FRAGMENT
+        )
+        response = [94mNone
+        [94mtry[39m:
+            response = [96mself[39m.client.execute(
+                query,
+                variable_values={
+                    [33m"entityName"[39m: [96mself[39m.entity,
+                    [33m"projectName"[39m: [96mself[39m.project,
+                    [33m"name"[39m: [96mself[39m._artifact_name,
+                },
+            )
+        [94mexcept[39m [96mException[39m:
+            [90m# we check for this after doing the call, since the backend supports raw digest lookups
+            [90m# which don't include ":" and are 32 characters long
+            [94mif[39m [33m":"[39m [95mnot[39m [95min[39m [96mself[39m._artifact_name [95mand[39m [96mlen[39m([96mself[39m._artifact_name) != [94m32[39m:
+                [94mraise[39m [96mValueError[39m(
+                    [33m'Attempted to fetch artifact without alias (e.g. "<artifact_name>:v3" or "<artifact_name>:latest")'
+                )
+        [94mif[39m (
+            response [95mis[39m [94mNone
+            [95mor[39m response.get([33m"project"[39m) [95mis[39m [94mNone
+            [95mor[39m response[[33m"project"[39m].get([33m"artifact"[39m) [95mis[39m [94mNone
+        ):
+>           [94mraise[39m [96mValueError[39m(
+                [33m'Project %s/%s does not contain artifact: "%s"'
+                % ([96mself[39m.entity, [96mself[39m.project, [96mself[39m._artifact_name)
+            )
+[31m[1mE           ValueError: Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:5072: ValueError
+[33mDuring handling of the above exception, another exception occurred:
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+    [37m@pytest[39m.fixture(scope=[33m"session"[39m)
+    [94mdef[39m [92mdata[39m(request):
+        reference_artifact = request.config.option.reference_artifact
+        [94mif[39m reference_artifact [95mis[39m [94mNone[39m:
+            pytest.fail([33m"--reference_artifact missing on command line"[39m)
+        sample_artifact = request.config.option.sample_artifact
+        [94mif[39m sample_artifact [95mis[39m [94mNone[39m:
+            pytest.fail([33m"--sample_artifact missing on command line"[39m)
+>       local_path = run.use_artifact(reference_artifact).file()
+[31m[1mconftest.py[39m[22m:28:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/sdk/wandb_run.py[39m[22m:333: in wrapper
+    [94mreturn[39m func([96mself[39m, *args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/sdk/wandb_run.py[39m[22m:2617: in use_artifact
+    artifact = public_api.artifact([96mtype[39m=[96mtype[39m, name=name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:64: in wrapper
+    [94mraise[39m CommError(message, err).with_traceback(sys.exc_info()[[94m2[39m])
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:26: in wrapper
+    [94mreturn[39m func(*args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:949: in artifact
+    artifact = Artifact([96mself[39m.client, entity, project, artifact_name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:4343: in __init__
+    [96mself[39m._load()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+    [94mdef[39m [92m_load[39m([96mself[39m):
+        query = gql(
+    [90m        [33m"""
+    [33m    query Artifact(
+    [33m        $entityName: String,
+    [33m        $projectName: String,
+    [33m        $name: String!
+    [33m    ) {
+    [33m        project(name: $projectName, entityName: $entityName) {
+    [33m            artifact(name: $name) {
+    [33m                ...ArtifactFragment
+    [33m            }
+    [33m        }
+    [33m    }
+    [33m    %s
+    [33m    """
+            % ARTIFACT_FRAGMENT
+        )
+        response = [94mNone
+        [94mtry[39m:
+            response = [96mself[39m.client.execute(
+                query,
+                variable_values={
+                    [33m"entityName"[39m: [96mself[39m.entity,
+                    [33m"projectName"[39m: [96mself[39m.project,
+                    [33m"name"[39m: [96mself[39m._artifact_name,
+                },
+            )
+        [94mexcept[39m [96mException[39m:
+            [90m# we check for this after doing the call, since the backend supports raw digest lookups
+            [90m# which don't include ":" and are 32 characters long
+            [94mif[39m [33m":"[39m [95mnot[39m [95min[39m [96mself[39m._artifact_name [95mand[39m [96mlen[39m([96mself[39m._artifact_name) != [94m32[39m:
+                [94mraise[39m [96mValueError[39m(
+                    [33m'Attempted to fetch artifact without alias (e.g. "<artifact_name>:v3" or "<artifact_name>:latest")'
+                )
+        [94mif[39m (
+            response [95mis[39m [94mNone
+            [95mor[39m response.get([33m"project"[39m) [95mis[39m [94mNone
+            [95mor[39m response[[33m"project"[39m].get([33m"artifact"[39m) [95mis[39m [94mNone
+        ):
+>           [94mraise[39m [96mValueError[39m(
+                [33m'Project %s/%s does not contain artifact: "%s"'
+                % ([96mself[39m.entity, [96mself[39m.project, [96mself[39m._artifact_name)
+            )
+[31m[1mE           wandb.errors.CommError: Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:5072: CommError
+[31m[1m_______________________________________________ ERROR at setup of test_column_ranges ________________________________________________
+args = (<wandb.apis.public.Api object at 0x7f305899b040>,)
+kwargs = {'name': 'genre_classification_prod/preprocessed_data.csv:latest', 'type': None}
+message = 'Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"'
+payload = 'Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"'
+    [37m@wraps[39m(func)
+    [94mdef[39m [92mwrapper[39m(*args, **kwargs):
+        message = [33m"Whoa, you found a bug."
+        [94mtry[39m:
+>           [94mreturn[39m func(*args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:26:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <wandb.apis.public.Api object at 0x7f305899b040>, name = 'genre_classification_prod/preprocessed_data.csv:latest', type = None
+    [37m@normalize_exceptions
+    [94mdef[39m [92martifact[39m([96mself[39m, name, [96mtype[39m=[94mNone[39m):
+    [90m    [33m"""
+    [33m    Returns a single artifact by parsing path in the form `entity/project/run_id`.
+    [33m    Arguments:
+    [33m        name: (str) An artifact name. May be prefixed with entity/project. Valid names
+    [33m            can be in the following forms:
+    [33m                name:version
+    [33m                name:alias
+    [33m                digest
+    [33m        type: (str, optional) The type of artifact to fetch.
+    [33m    Returns:
+    [33m        A `Artifact` object.
+    [33m    """
+        [94mif[39m name [95mis[39m [94mNone[39m:
+            [94mraise[39m [96mValueError[39m([33m"You must specify name= to fetch an artifact."[39m)
+        entity, project, artifact_name = [96mself[39m._parse_artifact_path(name)
+>       artifact = Artifact([96mself[39m.client, entity, project, artifact_name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:949:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+client = <wandb.apis.public.RetryingClient object at 0x7f305899b8b0>, entity = 'udacity-test', project = 'genre_classification_prod'
+name = 'preprocessed_data.csv:latest', attrs = None
+    [94mdef[39m [92m__init__[39m([96mself[39m, client, entity, project, name, attrs=[94mNone[39m):
+        [96mself[39m.client = client
+        [96mself[39m._entity = entity
+        [96mself[39m._project = project
+        [96mself[39m._artifact_name = name
+        [96mself[39m._artifact_collection_name = name.split([33m":"[39m)[[94m0[39m]
+        [96mself[39m._attrs = attrs
+        [94mif[39m [96mself[39m._attrs [95mis[39m [94mNone[39m:
+>           [96mself[39m._load()
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:4343:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+    [94mdef[39m [92m_load[39m([96mself[39m):
+        query = gql(
+    [90m        [33m"""
+    [33m    query Artifact(
+    [33m        $entityName: String,
+    [33m        $projectName: String,
+    [33m        $name: String!
+    [33m    ) {
+    [33m        project(name: $projectName, entityName: $entityName) {
+    [33m            artifact(name: $name) {
+    [33m                ...ArtifactFragment
+    [33m            }
+    [33m        }
+    [33m    }
+    [33m    %s
+    [33m    """
+            % ARTIFACT_FRAGMENT
+        )
+        response = [94mNone
+        [94mtry[39m:
+            response = [96mself[39m.client.execute(
+                query,
+                variable_values={
+                    [33m"entityName"[39m: [96mself[39m.entity,
+                    [33m"projectName"[39m: [96mself[39m.project,
+                    [33m"name"[39m: [96mself[39m._artifact_name,
+                },
+            )
+        [94mexcept[39m [96mException[39m:
+            [90m# we check for this after doing the call, since the backend supports raw digest lookups
+            [90m# which don't include ":" and are 32 characters long
+            [94mif[39m [33m":"[39m [95mnot[39m [95min[39m [96mself[39m._artifact_name [95mand[39m [96mlen[39m([96mself[39m._artifact_name) != [94m32[39m:
+                [94mraise[39m [96mValueError[39m(
+                    [33m'Attempted to fetch artifact without alias (e.g. "<artifact_name>:v3" or "<artifact_name>:latest")'
+                )
+        [94mif[39m (
+            response [95mis[39m [94mNone
+            [95mor[39m response.get([33m"project"[39m) [95mis[39m [94mNone
+            [95mor[39m response[[33m"project"[39m].get([33m"artifact"[39m) [95mis[39m [94mNone
+        ):
+>           [94mraise[39m [96mValueError[39m(
+                [33m'Project %s/%s does not contain artifact: "%s"'
+                % ([96mself[39m.entity, [96mself[39m.project, [96mself[39m._artifact_name)
+            )
+[31m[1mE           ValueError: Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:5072: ValueError
+[33mDuring handling of the above exception, another exception occurred:
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+    [37m@pytest[39m.fixture(scope=[33m"session"[39m)
+    [94mdef[39m [92mdata[39m(request):
+        reference_artifact = request.config.option.reference_artifact
+        [94mif[39m reference_artifact [95mis[39m [94mNone[39m:
+            pytest.fail([33m"--reference_artifact missing on command line"[39m)
+        sample_artifact = request.config.option.sample_artifact
+        [94mif[39m sample_artifact [95mis[39m [94mNone[39m:
+            pytest.fail([33m"--sample_artifact missing on command line"[39m)
+>       local_path = run.use_artifact(reference_artifact).file()
+[31m[1mconftest.py[39m[22m:28:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/sdk/wandb_run.py[39m[22m:333: in wrapper
+    [94mreturn[39m func([96mself[39m, *args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/sdk/wandb_run.py[39m[22m:2617: in use_artifact
+    artifact = public_api.artifact([96mtype[39m=[96mtype[39m, name=name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:64: in wrapper
+    [94mraise[39m CommError(message, err).with_traceback(sys.exc_info()[[94m2[39m])
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:26: in wrapper
+    [94mreturn[39m func(*args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:949: in artifact
+    artifact = Artifact([96mself[39m.client, entity, project, artifact_name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:4343: in __init__
+    [96mself[39m._load()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+    [94mdef[39m [92m_load[39m([96mself[39m):
+        query = gql(
+    [90m        [33m"""
+    [33m    query Artifact(
+    [33m        $entityName: String,
+    [33m        $projectName: String,
+    [33m        $name: String!
+    [33m    ) {
+    [33m        project(name: $projectName, entityName: $entityName) {
+    [33m            artifact(name: $name) {
+    [33m                ...ArtifactFragment
+    [33m            }
+    [33m        }
+    [33m    }
+    [33m    %s
+    [33m    """
+            % ARTIFACT_FRAGMENT
+        )
+        response = [94mNone
+        [94mtry[39m:
+            response = [96mself[39m.client.execute(
+                query,
+                variable_values={
+                    [33m"entityName"[39m: [96mself[39m.entity,
+                    [33m"projectName"[39m: [96mself[39m.project,
+                    [33m"name"[39m: [96mself[39m._artifact_name,
+                },
+            )
+        [94mexcept[39m [96mException[39m:
+            [90m# we check for this after doing the call, since the backend supports raw digest lookups
+            [90m# which don't include ":" and are 32 characters long
+            [94mif[39m [33m":"[39m [95mnot[39m [95min[39m [96mself[39m._artifact_name [95mand[39m [96mlen[39m([96mself[39m._artifact_name) != [94m32[39m:
+                [94mraise[39m [96mValueError[39m(
+                    [33m'Attempted to fetch artifact without alias (e.g. "<artifact_name>:v3" or "<artifact_name>:latest")'
+                )
+        [94mif[39m (
+            response [95mis[39m [94mNone
+            [95mor[39m response.get([33m"project"[39m) [95mis[39m [94mNone
+            [95mor[39m response[[33m"project"[39m].get([33m"artifact"[39m) [95mis[39m [94mNone
+        ):
+>           [94mraise[39m [96mValueError[39m(
+                [33m'Project %s/%s does not contain artifact: "%s"'
+                % ([96mself[39m.entity, [96mself[39m.project, [96mself[39m._artifact_name)
+            )
+[31m[1mE           wandb.errors.CommError: Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:5072: CommError
+[31m[1m_____________________________________________ ERROR at setup of test_kolmogorov_smirnov _____________________________________________
+args = (<wandb.apis.public.Api object at 0x7f305899b040>,)
+kwargs = {'name': 'genre_classification_prod/preprocessed_data.csv:latest', 'type': None}
+message = 'Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"'
+payload = 'Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"'
+    [37m@wraps[39m(func)
+    [94mdef[39m [92mwrapper[39m(*args, **kwargs):
+        message = [33m"Whoa, you found a bug."
+        [94mtry[39m:
+>           [94mreturn[39m func(*args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:26:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <wandb.apis.public.Api object at 0x7f305899b040>, name = 'genre_classification_prod/preprocessed_data.csv:latest', type = None
+    [37m@normalize_exceptions
+    [94mdef[39m [92martifact[39m([96mself[39m, name, [96mtype[39m=[94mNone[39m):
+    [90m    [33m"""
+    [33m    Returns a single artifact by parsing path in the form `entity/project/run_id`.
+    [33m    Arguments:
+    [33m        name: (str) An artifact name. May be prefixed with entity/project. Valid names
+    [33m            can be in the following forms:
+    [33m                name:version
+    [33m                name:alias
+    [33m                digest
+    [33m        type: (str, optional) The type of artifact to fetch.
+    [33m    Returns:
+    [33m        A `Artifact` object.
+    [33m    """
+        [94mif[39m name [95mis[39m [94mNone[39m:
+            [94mraise[39m [96mValueError[39m([33m"You must specify name= to fetch an artifact."[39m)
+        entity, project, artifact_name = [96mself[39m._parse_artifact_path(name)
+>       artifact = Artifact([96mself[39m.client, entity, project, artifact_name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:949:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+client = <wandb.apis.public.RetryingClient object at 0x7f305899b8b0>, entity = 'udacity-test', project = 'genre_classification_prod'
+name = 'preprocessed_data.csv:latest', attrs = None
+    [94mdef[39m [92m__init__[39m([96mself[39m, client, entity, project, name, attrs=[94mNone[39m):
+        [96mself[39m.client = client
+        [96mself[39m._entity = entity
+        [96mself[39m._project = project
+        [96mself[39m._artifact_name = name
+        [96mself[39m._artifact_collection_name = name.split([33m":"[39m)[[94m0[39m]
+        [96mself[39m._attrs = attrs
+        [94mif[39m [96mself[39m._attrs [95mis[39m [94mNone[39m:
+>           [96mself[39m._load()
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:4343:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+    [94mdef[39m [92m_load[39m([96mself[39m):
+        query = gql(
+    [90m        [33m"""
+    [33m    query Artifact(
+    [33m        $entityName: String,
+    [33m        $projectName: String,
+    [33m        $name: String!
+    [33m    ) {
+    [33m        project(name: $projectName, entityName: $entityName) {
+    [33m            artifact(name: $name) {
+    [33m                ...ArtifactFragment
+    [33m            }
+    [33m        }
+    [33m    }
+    [33m    %s
+    [33m    """
+            % ARTIFACT_FRAGMENT
+        )
+        response = [94mNone
+        [94mtry[39m:
+            response = [96mself[39m.client.execute(
+                query,
+                variable_values={
+                    [33m"entityName"[39m: [96mself[39m.entity,
+                    [33m"projectName"[39m: [96mself[39m.project,
+                    [33m"name"[39m: [96mself[39m._artifact_name,
+                },
+            )
+        [94mexcept[39m [96mException[39m:
+            [90m# we check for this after doing the call, since the backend supports raw digest lookups
+            [90m# which don't include ":" and are 32 characters long
+            [94mif[39m [33m":"[39m [95mnot[39m [95min[39m [96mself[39m._artifact_name [95mand[39m [96mlen[39m([96mself[39m._artifact_name) != [94m32[39m:
+                [94mraise[39m [96mValueError[39m(
+                    [33m'Attempted to fetch artifact without alias (e.g. "<artifact_name>:v3" or "<artifact_name>:latest")'
+                )
+        [94mif[39m (
+            response [95mis[39m [94mNone
+            [95mor[39m response.get([33m"project"[39m) [95mis[39m [94mNone
+            [95mor[39m response[[33m"project"[39m].get([33m"artifact"[39m) [95mis[39m [94mNone
+        ):
+>           [94mraise[39m [96mValueError[39m(
+                [33m'Project %s/%s does not contain artifact: "%s"'
+                % ([96mself[39m.entity, [96mself[39m.project, [96mself[39m._artifact_name)
+            )
+[31m[1mE           ValueError: Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:5072: ValueError
+[33mDuring handling of the above exception, another exception occurred:
+request = <SubRequest 'data' for <Function test_column_presence_and_type>>
+    [37m@pytest[39m.fixture(scope=[33m"session"[39m)
+    [94mdef[39m [92mdata[39m(request):
+        reference_artifact = request.config.option.reference_artifact
+        [94mif[39m reference_artifact [95mis[39m [94mNone[39m:
+            pytest.fail([33m"--reference_artifact missing on command line"[39m)
+        sample_artifact = request.config.option.sample_artifact
+        [94mif[39m sample_artifact [95mis[39m [94mNone[39m:
+            pytest.fail([33m"--sample_artifact missing on command line"[39m)
+>       local_path = run.use_artifact(reference_artifact).file()
+[31m[1mconftest.py[39m[22m:28:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/sdk/wandb_run.py[39m[22m:333: in wrapper
+    [94mreturn[39m func([96mself[39m, *args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/sdk/wandb_run.py[39m[22m:2617: in use_artifact
+    artifact = public_api.artifact([96mtype[39m=[96mtype[39m, name=name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:64: in wrapper
+    [94mraise[39m CommError(message, err).with_traceback(sys.exc_info()[[94m2[39m])
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/normalize.py[39m[22m:26: in wrapper
+    [94mreturn[39m func(*args, **kwargs)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:949: in artifact
+    artifact = Artifact([96mself[39m.client, entity, project, artifact_name)
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:4343: in __init__
+    [96mself[39m._load()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+self = <[TypeError("'NoneType' object is not subscriptable") raised in repr()] Artifact object at 0x7f305899b880>
+    [94mdef[39m [92m_load[39m([96mself[39m):
+        query = gql(
+    [90m        [33m"""
+    [33m    query Artifact(
+    [33m        $entityName: String,
+    [33m        $projectName: String,
+    [33m        $name: String!
+    [33m    ) {
+    [33m        project(name: $projectName, entityName: $entityName) {
+    [33m            artifact(name: $name) {
+    [33m                ...ArtifactFragment
+    [33m            }
+    [33m        }
+    [33m    }
+    [33m    %s
+    [33m    """
+            % ARTIFACT_FRAGMENT
+        )
+        response = [94mNone
+        [94mtry[39m:
+            response = [96mself[39m.client.execute(
+                query,
+                variable_values={
+                    [33m"entityName"[39m: [96mself[39m.entity,
+                    [33m"projectName"[39m: [96mself[39m.project,
+                    [33m"name"[39m: [96mself[39m._artifact_name,
+                },
+            )
+        [94mexcept[39m [96mException[39m:
+            [90m# we check for this after doing the call, since the backend supports raw digest lookups
+            [90m# which don't include ":" and are 32 characters long
+            [94mif[39m [33m":"[39m [95mnot[39m [95min[39m [96mself[39m._artifact_name [95mand[39m [96mlen[39m([96mself[39m._artifact_name) != [94m32[39m:
+                [94mraise[39m [96mValueError[39m(
+                    [33m'Attempted to fetch artifact without alias (e.g. "<artifact_name>:v3" or "<artifact_name>:latest")'
+                )
+        [94mif[39m (
+            response [95mis[39m [94mNone
+            [95mor[39m response.get([33m"project"[39m) [95mis[39m [94mNone
+            [95mor[39m response[[33m"project"[39m].get([33m"artifact"[39m) [95mis[39m [94mNone
+        ):
+>           [94mraise[39m [96mValueError[39m(
+                [33m'Project %s/%s does not contain artifact: "%s"'
+                % ([96mself[39m.entity, [96mself[39m.project, [96mself[39m._artifact_name)
+            )
+[31m[1mE           wandb.errors.CommError: Project udacity-test/genre_classification_prod does not contain artifact: "preprocessed_data.csv:latest"
+[31m[1m/home/linux/miniconda3/envs/mlflow-c7ef040df42391b7a21d02ecdca859bd584276d4/lib/python3.9/site-packages/wandb/apis/public.py[39m[22m:5072: CommError
+====================================================== short test summary info ======================================================
+ERROR test_data.py::test_column_presence_and_type - wandb.errors.CommError: Project udacity-test/genre_classification_prod does no...
+ERROR test_data.py::test_class_names - wandb.errors.CommError: Project udacity-test/genre_classification_prod does not contain art...
+ERROR test_data.py::test_column_ranges - wandb.errors.CommError: Project udacity-test/genre_classification_prod does not contain a...
+ERROR test_data.py::test_kolmogorov_smirnov - wandb.errors.CommError: Project udacity-test/genre_classification_prod does not cont...
+[31m========================================================= [1m4 errors[22m in 2.08s =========================================================

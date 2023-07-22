@@ -1,0 +1,80 @@
+{
+    "os": "Linux-5.15.90.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.9.15",
+    "heartbeatAt": "2023-07-19T14:58:45.020768",
+    "startedAt": "2023-07-19T14:58:43.999733",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--input_artifact",
+        "raw_data.parquet:latest",
+        "--artifact_name",
+        "preprocessed_data.csv",
+        "--artifact_type",
+        "preprocessed_data",
+        "--artifact_description",
+        "Data with preprocessing applied"
+    ],
+    "state": "running",
+    "program": "/home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/preprocess/run.py",
+    "codePath": "run.py",
+    "host": "LAPTOP-BENBK7JO",
+    "username": "linux",
+    "executable": "/home/linux/miniconda3/envs/mlflow-b442b4bfee482c8897f88f7f530cbbe77c20d046/bin/python",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 2419.198,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2419.198,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 1006.853931427002,
+        "used": 17.91564178466797
+    },
+    "memory": {
+        "total": 7.64447021484375
+    }
+}

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/mlruns/0/838b44da04104318b1c3549c994b23fe/artifacts
+end_time: 1689803275018
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 838b44da04104318b1c3549c994b23fe
+run_name: tasteful-calf-589
+run_uuid: 838b44da04104318b1c3549c994b23fe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1689803251688
+status: 3
+tags: []
+user_id: linux

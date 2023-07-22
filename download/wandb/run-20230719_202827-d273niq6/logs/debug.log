@@ -1,0 +1,32 @@
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_setup.py:_flush():68] Configure stats pid to 30332
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_setup.py:_flush():68] Loading settings from /home/linux/.config/wandb/settings
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_setup.py:_flush():68] Loading settings from /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/download/wandb/settings
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_setup.py:_flush():68] Loading settings from environment variables: {'run_group': 'dev', 'project': 'exercise_14', '_require_service': 'True'}
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_setup.py:_flush():68] Inferring run settings from compute environment: {'program_relpath': 'download_data.py', 'program': '/home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/download/download_data.py'}
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_init.py:_log_setup():478] Logging user logs to /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/download/wandb/run-20230719_202827-d273niq6/logs/debug.log
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_init.py:_log_setup():479] Logging internal logs to /home/linux/Python/cd0581-building-a-reproducible-model-workflow-exercises-main/lesson-5-final-pipeline-release-and-deploy/exercises/exercise_14/starter/download/wandb/run-20230719_202827-d273niq6/logs/debug-internal.log
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_init.py:init():518] calling init triggers
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_init.py:init():521] wandb.init called with sweep_config: {}
+config: {}
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_init.py:init():571] starting backend
+2023-07-19 20:28:27,454 INFO    MainThread:30332 [wandb_init.py:init():575] setting up manager
+2023-07-19 20:28:27,455 INFO    MainThread:30332 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-07-19 20:28:27,457 INFO    MainThread:30332 [wandb_init.py:init():582] backend started and connected
+2023-07-19 20:28:27,457 INFO    MainThread:30332 [wandb_init.py:init():670] updated telemetry
+2023-07-19 20:28:27,458 INFO    MainThread:30332 [wandb_init.py:init():710] communicating run to backend with 60.0 second timeout
+2023-07-19 20:28:28,344 INFO    MainThread:30332 [wandb_run.py:_on_init():2121] communicating current version
+2023-07-19 20:28:28,405 INFO    MainThread:30332 [wandb_run.py:_on_init():2125] got version response upgrade_message: "wandb version 0.15.5 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2023-07-19 20:28:28,405 INFO    MainThread:30332 [wandb_init.py:init():758] starting run threads in backend
+2023-07-19 20:28:29,106 INFO    MainThread:30332 [wandb_run.py:_console_start():2101] atexit reg
+2023-07-19 20:28:29,107 INFO    MainThread:30332 [wandb_run.py:_redirect():1959] redirect: 3
+2023-07-19 20:28:29,107 INFO    MainThread:30332 [wandb_run.py:_redirect():2024] Wrapping output streams.
+2023-07-19 20:28:29,107 INFO    MainThread:30332 [wandb_run.py:_redirect():2046] Redirects installed.
+2023-07-19 20:28:29,107 INFO    MainThread:30332 [wandb_init.py:init():798] run started, returning control to user process
+2023-07-19 20:28:33,556 INFO    MainThread:30332 [wandb_run.py:_finish():1844] finishing run udacity-test/exercise_14/d273niq6
+2023-07-19 20:28:33,556 INFO    MainThread:30332 [wandb_run.py:_atexit_cleanup():2070] got exitcode: 0
+2023-07-19 20:28:33,557 INFO    MainThread:30332 [wandb_run.py:_restore():2053] restore
+2023-07-19 20:28:33,557 INFO    MainThread:30332 [wandb_run.py:_restore():2059] restore done
+2023-07-19 20:28:38,481 INFO    MainThread:30332 [wandb_run.py:_footer_history_summary_info():3427] rendering history
+2023-07-19 20:28:38,482 INFO    MainThread:30332 [wandb_run.py:_footer_history_summary_info():3459] rendering summary
+2023-07-19 20:28:38,484 INFO    MainThread:30332 [wandb_run.py:_footer_sync_info():3383] logging synced files
